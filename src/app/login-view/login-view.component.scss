@@ -52,3 +52,9 @@ h2 {
     width: 8em;
     height: 2em;
 }
+
+@media only screen and (max-width:370px) {
+    .Sign-up {
+        grid-template-columns: auto;
+    }
+}
