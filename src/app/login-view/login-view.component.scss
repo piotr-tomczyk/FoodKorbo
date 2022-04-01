@@ -1,0 +1,54 @@
+h2 {
+    text-align: center;
+}
+
+@mixin flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Login {
+    display: grid;
+    grid-template-rows: 4em 4em;
+    grid-template-columns: 150px;
+    min-height: 30%;
+    max-height: 100%;
+}
+
+.Sign-up {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: auto auto;
+    gap: 1em;
+    min-height: 30%;
+    max-height: 100%;
+}
+
+.content {
+    @include flex-column();
+}
+
+.field {
+    @include flex-column();
+    align-items: baseline;
+}
+
+.dialog {
+    @include flex-row();
+    gap: 2em;
+    margin-top: 100px;
+}
+
+.submit-sign,
+.submit-login {
+    width: 8em;
+    height: 2em;
+}
