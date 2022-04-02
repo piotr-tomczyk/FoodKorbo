@@ -2,43 +2,83 @@
 <div class="content">
     <div *ngIf="isLogin">
         <h2>Login</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit" class="Login">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="Login">
             <div class="field">
                 <label for="username">Username: </label>
-                <input type="text" formControlName="username">
+                <input type="text" formControlName="username" (input)="HideError = true">
+                <div *ngIf="usernameLogin?.errors?.['matchValidator'] && !HideError" class="error">
+                    Username don't exist.
+                </div>
             </div>
             <div class="field">
                 <label for="password">Password: </label>
-                <input type="password" formControlName="password">
+                <input type="password" formControlName="password" (input)="HideError = true">
+                <div *ngIf="!usernameLogin?.errors?.['matchValidator'] && passwordLogin?.errors?.['matchValidator'] && !HideError" class="error">
+                    Wrong Password;
+                </div>
             </div>
             <button type="submit" class="submit-login">Login</button>
         </form>
     </div>
     <div *ngIf="!isLogin">
         <h2>Sign Up</h2>
-        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit" class="Sign-up">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="Sign-up" (input)="HideError = true">
             <div class="field">
                 <label for="username">Username: </label>
-                <input type="text" formControlName="username">
+                <input type="text" formControlName="username" >
+                <div *ngIf="usernameSign?.errors?.['required'] && !HideError" class="error">
+                    This field is required.
+                </div>
             </div>
             <div class="field">
                 <label for="email">Email: </label>
                 <input type="email" formControlName="email">
+                <div *ngIf="emailSign?.errors?.['required'] && !HideError" class="error">
+                    This field is required.
+                </div>
+                <div *ngIf="emailSign?.errors?.['pattern'] && !HideError" class="error">
+                    Invalid email address.
+                </div>
             </div>
             <div class="field">
                 <label for="password">Password: </label>
                 <input type="password" formControlName="password">
+                <div *ngIf="passwordSign?.errors?.['required'] && !HideError" class="error password-error">
+                    This field is required.
+                </div>
+                <div *ngIf="passwordSign?.errors?.['minlength'] && !HideError" class="error">
+                    Password must be at least 8 characters long.
+                </div>
             </div>
-            <div class="field">
+            <div class="field confirm-password">
                 <label for="ConfirmPassword">Confirm password:</label>
                 <input type="password" formControlName="confirmPassword">
+                <div *ngIf="confirmPassword?.errors?.['required'] && !HideError" class="error">
+                    This field is required.
+                </div>
+                <div *ngIf="confirmPassword?.errors?.['confirmedValidator'] && !HideError" class="error">
+                    Passwords don't match
+                </div>
             </div>
-            <button type="submit" class="submit-sign">Sign-up</button>
+            <div *ngIf="passwordSign?.errors?.['pattern'] && !HideError" class="error pattern-match-error">
+                Password must contain:
+                <ul>
+                    <li>One or more uppercase character</li>
+                    <li>One or more lowercase character</li>
+                    <li>One or more numeric value</li>
+                    <li>One or more special character</li>
+                </ul>
+            </div>
+            <div>
+                <button type="submit" class="submit-sign">Sign-up</button>
+            </div>
         </form>
     </div>
 </div>
+<div *ngIf="signedUp" class="accept">
+    Registration successful!
+</div>
 <div class="dialog">
     <button type="button" (click)="ChangeForLogin()"> Login </button>
-
     <button type="button" (click)="ChangeForSignUp()"> Sign-up </button>
 </div>

@@ -1,1 +1,8 @@
-<p>dish-view works!</p>
+<h2>User list</h2>
+<div class="content">
+    <div *ngFor="let user of users;">
+        <div>ID: {{user.id}}</div>
+        <div>Name: {{user.username}}</div>
+        <div>Email: {{user.email}}</div>
+    </div>
+</div>

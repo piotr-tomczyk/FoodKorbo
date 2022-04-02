@@ -5,7 +5,7 @@ export interface User {
     username: string,
     email: string,
     password: string,
-    descripton: string,
+    descripton?: string,
     dishes?: Dish[],
 }
 export let users: User[] = [
@@ -13,21 +13,24 @@ export let users: User[] = [
         id: 1,
         username: 'Peyvir',
         email: 'Peyvir@gmail.com',
-        password: 'peyvir',
-        descripton: ''
+        password: 'peyvir'
     },
     {
         id: 2,
         username: 'Akki',
         email: 'Akki@gmail.com',
-        password: 'akki',
-        descripton: ''
+        password: 'akki'
     },
     {
         id: 3,
         username: 'Hej',
         email: 'Hej@gmail.com',
-        password: 'admin',
-        descripton: ''
+        password: 'admin'
     },
 ]
+export const addUser = (user:User) => {
+    users.push(user);
+}
+export const getMaxID = () =>{
+    return users.length + 1;
+}
