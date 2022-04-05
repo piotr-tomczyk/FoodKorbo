@@ -6,6 +6,7 @@ export interface User {
     email: string,
     password: string,
     descripton?: string,
+    isLogged?:boolean,
     dishes?: Dish[],
 }
 export let users: User[] = [
@@ -13,7 +14,21 @@ export let users: User[] = [
         id: 1,
         username: 'Peyvir',
         email: 'Peyvir@gmail.com',
-        password: 'peyvir'
+        password: 'peyvir',
+        dishes: [
+            {
+                id: 1,
+                name: "Spaghetti",
+                description: "italian pog",
+                isPublic: true
+            },
+            {
+                id: 2,
+                name: "Kiwi",
+                description: "eat the bird",
+                isPublic: false
+            }
+        ]
     },
     {
         id: 2,

@@ -1,8 +1,20 @@
 <h2>User list</h2>
 <div class="content">
+    <button *ngIf="isLogged" type="button" (click)="LogOut()">Log Out!</button>
     <div *ngFor="let user of users;">
+        <h2>USER</h2>
         <div>ID: {{user.id}}</div>
         <div>Name: {{user.username}}</div>
         <div>Email: {{user.email}}</div>
+        <div *ngIf="user.isLogged == true">Logged!</div>
+        <div *ngIf="user.dishes">
+            <h3>DISHES</h3>
+            <div *ngFor="let dish of user.dishes">
+                <div *ngIf="dish.isPublic || (user.isLogged && dish.isPublic == false)">
+                    <div>Name: {{dish.name}}</div>
+                    <div>About: {{dish.description}}</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

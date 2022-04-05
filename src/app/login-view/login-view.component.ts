@@ -49,7 +49,8 @@ export class LoginViewComponent implements OnInit {
       if(this.loginForm.valid){
         this.HideError = true;
         this.loginForm.reset;
-        this.route.navigate(['/view']);
+        this.SetLogin(this.usernameLogin?.value);
+        this.route.navigate(['/view', {isLogged: true}]);
         return;
       }
       this.HideError = false;
@@ -82,4 +83,11 @@ export class LoginViewComponent implements OnInit {
     this.isLogin = false;
     this.loginForm.reset();
   }
+  SetLogin(name:string){
+    users.forEach(user => {
+      if(user.username == name){
+          user.isLogged = true;
+      }
+    });
+  } 
 }

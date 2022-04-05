@@ -1,5 +1,6 @@
 export interface Dish {
     id: number,
     name: string,
-    description: string
+    description: string,
+    isPublic: boolean
 }
