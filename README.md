@@ -1,5 +1,11 @@
 # FoodKorbo
 
+## About
+I made this page to show my angular form validation skills.
+I made my custom validators.
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Development server
